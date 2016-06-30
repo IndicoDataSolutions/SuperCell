@@ -1,7 +1,7 @@
 # SuperCell
 Hello, and welcome to indico's repo for public tutorials and the code that accompanies technical articles.
 
-### First get an indico API key
+#### First get an indico API key
 Many of these tutorials use indico API's, so you'll need to get a (free) API key. Go to [indico.io](https://indico.io) to register (or to generate a new key if you've already registered and forgotten our old key).
 
 ## Plotlines
@@ -19,8 +19,8 @@ Accompanies this article: [link](link)
 ## Visualizing with t-SNE
 [Link to blog post at indico.io](https://indico.io/blog/visualizing-with-t-sne/)
 
-### Image Features Classifier
+## Image Features Classifier
 Currently available in a separate repo: [link](https://github.com/IndicoDataSolutions/ImageFeaturesClassifier)
 
-### Image Similarity
+## Image Similarity
 Currently available in a separate repo: [link](https://github.com/IndicoDataSolutions/ImageSimilarity)
