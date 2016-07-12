@@ -7,6 +7,6 @@
  C. Custom-trained API using general text features.<br>
  D. Custom-trained API using pre-trained sentiment features.
 
-####Receive 10k Free API calls per month to continue experimenting with indico. Sign up <a href="https://indico.io/pay-per-call"> here. </a>
+####Receive 10k Free API calls per month to continue experimenting with indico. Sign up <a href="https://indico.io/pay-per-call"> here.</a>
 
 ####Get started with Custom Collections <a href="https://indico.io/docs#custom"> here </a> on our docs!
