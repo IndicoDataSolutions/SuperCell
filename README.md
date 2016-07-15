@@ -15,7 +15,7 @@ Comparison of four different machine learning strategies:
    3. Build a custom model on top of word-level features.
    4. Transfer features from a pre-built model into a custom classifier.
 
-Accompanies this article: [link](link)
+Accompanies this [article on KD Nuggets](https://github.com/IndicoDataSolutions/SuperCell)
 
 ## Visualizing with t-SNE
 [Link to blog post at indico.io](https://indico.io/blog/visualizing-with-t-sne/)
