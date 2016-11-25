@@ -44,7 +44,7 @@ def generate_training_data(fname):
 
 if __name__ == "__main__":
     train = generate_training_data("#UPDATE")
-    collection = Collection(#UPDATE)
+    collection = Collection(train)
 
     '''
     print collection.predict("test_shirts/9915.jpg")
