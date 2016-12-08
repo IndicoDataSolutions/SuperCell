@@ -1,5 +1,7 @@
 import os
-from tqdm import tqdm
+from operator import itemgetter
+
+from indicoio.custom import Collection
 
 def generate_training_data(fname):
     """
@@ -15,41 +17,45 @@ def generate_training_data(fname):
     half is the image filename and the second half is its
     associated labels.
     """
-    lines = open(fname).read().split("\n")
+    with open(fname, "rb") as f:
+        for line in f:
+            shirt, targets = line.split(":")
+            shirt_path = "training_shirts/{image}.jpg".format(
+                image=shirt.strip()
+            )
+            shirt_path = os.path.abspath(shirt_path)
 
-    all_shirts = []
-    all_labels = []
-
-    for line in lines:
-        if not line:
-    		continue
-
-        row = line.split(":")
-        shirt_name = "training_shirts/" + row[0] + ".jpg"
-        shirt_name = os.path.abspath(shirt_name)
-
-        # clean up extra punctuation marks, brackets, white space etc.
-    	cleanup = row[1].replace("[", "").replace("]", "")
-        labels = cleanup.split(",")
-    	labels = ["label"+label.strip() for label in labels]
-
-        for l in labels:
-            all_shirts.append(shirt_name)
-            all_labels.append(l)
-
-    # put split shirts and labels into a single list to pass into the Custom Collections API
-    all_data = [list(x) for x in zip(all_shirts, all_labels)]
-    return all_data
+            # parse out the list of targets
+            target_list = targets.strip()[1:-1].split(",")
+            labels = map(lambda target: "label" + target.strip(), target_list)
+            yield [ (shirt_path, label) for label in labels]
+    raise StopIteration
 
 
 if __name__ == "__main__":
-    train = generate_training_data("#UPDATE")
-    collection = Collection(#UPDATE)
+    collection = Collection("clothes_collection_1")
 
-    '''
-    print collection.predict("test_shirts/9915.jpg")
-    print collection.predict("test_shirts/12770.jpg")
-    print collection.predict("test_shirts/13668.jpg")
-    print collection.predict("test_shirts/14195.jpg")
-    print collection.predict("test_shirts/11896765.jpg")
-    '''
+    # Clear any previous changes
+    try:
+        collection.clear()
+    except:
+        pass
+
+    train = generate_training_data("clothes_match_labeled_data_1.txt")
+
+    total = 0
+    for samples in train:
+        print "Adding {num} samples to collection".format(num=len(samples))
+        collection.add_data(samples)
+        total += len(samples)
+        print "Added {total} samples to collection thus far".format(total=total)
+
+    collection.train()
+    collection.wait()
+
+    sort_key = itemgetter(1)
+    print sorted(collection.predict("test_shirts/9915.jpg").items(), key=sort_key)
+    print sorted(collection.predict("test_shirts/12770.jpg").items(), key=sort_key)
+    print sorted(collection.predict("test_shirts/13668.jpg").items(), key=sort_key)
+    print sorted(collection.predict("test_shirts/14195.jpg").items(), key=sort_key)
+    print sorted(collection.predict("test_shirts/11896765.jpg").items(), key=sort_key)
