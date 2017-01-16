@@ -14,7 +14,7 @@ import csv
 import xlrd
 from itertools import izip
 import indicoio
-indicoio.config.api_key = "afa48345219e962d108bbd173b100111"
+indicoio.config.api_key = "YOUR_API_KEY_HERE"
 
 def _get_sheet(book, args):
     # Both sheet and sheet number provided
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     parser.add_argument("--contains-header", action="store_true", help="use if columns have headers")
 
     args = parser.parse_args()
-    with open("predictions3.csv", "wb") as f:
+    with open("predictions.csv", "wb") as f:
         writer = csv.writer(f, dialect="excel")
         for lines in parse_from_xlsx(args):
             not_empty, inputs = zip(*[row for row in enumerate(lines) if row[1].strip()])
