@@ -1,3 +1,4 @@
+**Read from .xlsx (Excel files)**
 This small program will help you easily analyze your own Excel data using indico’s machine learning text APIs.
 Check out the tutorial for more information.
 
