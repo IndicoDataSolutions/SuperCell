@@ -11,7 +11,8 @@ from texttable import Texttable
 indicoio.config.api_key = "YOUR_API_KEY_HERE"
 
 '''
-description
+Use indico's Text Features API to find text similarity and create a customer support bot that automatically responds to FAQs from users.
+Tutorial: https://indico.io/blog/faqs-bot-text-features-api/
 '''
 
 faqs = {
