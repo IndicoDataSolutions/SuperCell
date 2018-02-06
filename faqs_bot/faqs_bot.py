@@ -1,5 +1,6 @@
 import math
 import os
+import tqdm
 from random import sample
 import cPickle as pickle
 
